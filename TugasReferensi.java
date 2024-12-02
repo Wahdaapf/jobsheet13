@@ -2,60 +2,88 @@ import java.util.Scanner;
 
 public class TugasReferensi {
 
+    static void tampilMenu(String[] menu) {
+        System.out.println("\n\n=== PENCATATAN PRESTASI MAHASISWA ===");
+        for (int i = 0; i < menu.length; i++) {
+            System.out.println((i + 1) + ". " + menu[i]);
+        }
+    }
+
     // Metode untuk memasukkan nilai mahasiswa
     static void inputNilai(String[][] dataMahasiswa, int jumlahMahasiswa, Scanner sc) {
-        for (int i = 0; i < jumlahMahasiswa; i++) {
-            System.out.println("\nMasukkan data mahasiswa ke-" + (i + 1));
-            System.out.print("Nama Mahasiswa: ");
-            dataMahasiswa[i][0] = sc.nextLine();
-
-            System.out.print("NIM: ");
-            dataMahasiswa[i][1] = sc.nextLine();
-
-            System.out.print("Jenis Prestasi: ");
-            dataMahasiswa[i][2] = sc.nextLine();
-
-            // Validasi input tingkat prestasi
-            while (true) {
-                System.out.print("Tingkat Prestasi (Lokal, Nasional, Internasional): ");
-                String tingkat = sc.nextLine();
-                if (tingkat.equalsIgnoreCase("Lokal") || 
-                    tingkat.equalsIgnoreCase("Nasional") || 
-                    tingkat.equalsIgnoreCase("Internasional")) {
-                    dataMahasiswa[i][3] = tingkat;
-                    break;
-                } else {
-                    System.out.println("Tingkat prestasi tidak valid. Coba lagi.");
-                }
-            }
-
-            // Validasi input tahun prestasi
-            while (true) {
-                System.out.print("Tahun Prestasi (2010 hingga saat ini): ");
-                String tahun = sc.nextLine();
-                try {
-                    int tahunInt = Integer.parseInt(tahun);
-                    int tahunSaatIni = java.time.Year.now().getValue();
-                    if (tahunInt >= 2010 && tahunInt <= tahunSaatIni) {
-                        dataMahasiswa[i][4] = tahun;
-                        break;
-                    } else {
-                        System.out.println("Tahun tidak valid. Coba lagi.");
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("Harap masukkan angka tahun yang valid.");
-                }
+        int panjangMahasiswa = 0;
+        for (String[] dataMahasiswa1 : dataMahasiswa) {
+            if (dataMahasiswa1[0] != null) { 
+                panjangMahasiswa++;
             }
         }
+        System.out.println("\nMasukkan data mahasiswa ke-" + (panjangMahasiswa + 1));
+        System.out.print("Nama Mahasiswa: ");
+        dataMahasiswa[panjangMahasiswa][0] = sc.nextLine();
+
+        System.out.print("NIM: ");
+        dataMahasiswa[panjangMahasiswa][1] = sc.nextLine();
+
+        System.out.print("Jenis Prestasi: ");
+        dataMahasiswa[panjangMahasiswa][2] = sc.nextLine();
+
+        // Validasi input tingkat prestasi
+        while (true) {
+            System.out.print("Tingkat Prestasi (Lokal, Nasional, Internasional): ");
+            String tingkat = sc.nextLine();
+            if (tingkat.equalsIgnoreCase("Lokal") || 
+                tingkat.equalsIgnoreCase("Nasional") || 
+                tingkat.equalsIgnoreCase("Internasional")) {
+                dataMahasiswa[panjangMahasiswa][3] = tingkat;
+                break;
+            } else {
+                System.out.println("Tingkat prestasi tidak valid. Coba lagi.");
+            }
+        }
+
+        // Validasi input tahun prestasi
+        while (true) {
+            System.out.print("Tahun Prestasi (2010 - 2024): ");
+            String tahun = sc.nextLine();
+            try {
+                int tahunInt = Integer.parseInt(tahun);
+                int tahunSaatIni = java.time.Year.now().getValue();
+                if (tahunInt >= 2010 && tahunInt <= tahunSaatIni) {
+                    dataMahasiswa[panjangMahasiswa][4] = tahun;
+                    break;
+                } else {
+                    System.out.println("Tahun tidak valid. Coba lagi.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Harap masukkan angka tahun yang valid.");
+            }
+        }
+
+        System.out.println("Data Berhasil Di Tambahkan");
     }
 
     // Metode untuk menampilkan semua data mahasiswa
     static void tampilkanSemuaPrestasi(String[][] dataMahasiswa, int jumlahMahasiswa) {
-        System.out.println("\nDaftar Semua Prestasi Mahasiswa:");
-        for (int i = 0; i < jumlahMahasiswa; i++) {
-            System.out.printf("Nama: %s, NIM: %s, Jenis Prestasi: %s, Tingkat: %s, Tahun: %s\n",
-                dataMahasiswa[i][0], dataMahasiswa[i][1], dataMahasiswa[i][2], 
-                dataMahasiswa[i][3], dataMahasiswa[i][4]);
+        
+        int panjangMahasiswa = 0;
+        for (String[] dataMahasiswa1 : dataMahasiswa) {
+            if (dataMahasiswa1[0] != null) {
+                panjangMahasiswa++;
+            }
+        }
+        if (panjangMahasiswa == 0) {
+                System.out.print("Belum ada data prestasi.");
+        } else {
+                System.out.println("\nDaftar Semua Prestasi Mahasiswa:");
+        
+            for (int i = 0; i < jumlahMahasiswa; i++) {
+                if (dataMahasiswa[i][0] != null) {
+                    System.out.printf("Nama: %s, NIM: %s, Jenis Prestasi: %s, Tingkat: %s, Tahun: %s\n",
+                            dataMahasiswa[i][0], dataMahasiswa[i][1], dataMahasiswa[i][2],
+                            dataMahasiswa[i][3], dataMahasiswa[i][4]);
+                }
+
+            }
         }
     }
 
@@ -67,11 +95,13 @@ public class TugasReferensi {
         boolean ditemukan = false;
 
         for (int i = 0; i < jumlahMahasiswa; i++) {
-            if (dataMahasiswa[i][2].equalsIgnoreCase(jenisPrestasi)) {
-                System.out.printf("Nama: %s, NIM: %s, Tingkat: %s, Tahun: %s\n",
-                    dataMahasiswa[i][0], dataMahasiswa[i][1], 
-                    dataMahasiswa[i][3], dataMahasiswa[i][4]);
-                ditemukan = true;
+            if(dataMahasiswa[i][0] != null) {
+                if (dataMahasiswa[i][2].equalsIgnoreCase(jenisPrestasi)) {
+                    System.out.printf("Nama: %s, NIM: %s, Tingkat: %s, Tahun: %s\n",
+                        dataMahasiswa[i][0], dataMahasiswa[i][1], 
+                        dataMahasiswa[i][3], dataMahasiswa[i][4]);
+                    ditemukan = true;
+                }
             }
         }
 
@@ -89,15 +119,12 @@ public class TugasReferensi {
             "Keluar"
         };
 
-        int jumlahMahasiswa = 3; // Ukuran awal array
+        int jumlahMahasiswa = 100; // Ukuran awal array
         String[][] dataMahasiswa = new String[jumlahMahasiswa][5];
         boolean isRunning = true;
 
         while (isRunning) {
-            System.out.println("\nMenu:");
-            for (int i = 0; i < menu.length; i++) {
-                System.out.println((i + 1) + ". " + menu[i]);
-            }
+            tampilMenu(menu); // Tampilkan menu
             System.out.print("Pilih menu: ");
             int pilihan = sc.nextInt();
             sc.nextLine(); // Bersihkan buffer
@@ -113,7 +140,7 @@ public class TugasReferensi {
                     analisisPrestasi(dataMahasiswa, jumlahMahasiswa, sc);
                     break;
                 case 4:
-                    System.out.println("Terima kasih! Program selesai.");
+                    System.out.println("Program selesai. Terima kasih! ");
                     isRunning = false;
                     break;
                 default:
