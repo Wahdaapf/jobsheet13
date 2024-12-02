@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class TugasReferensi {
 
     static void tampilMenu(String[] menu) {
-        System.out.println("\n\n=== PENCATATAN PRESTASI MAHASISWA ===");
+        System.out.println("=== PENCATATAN PRESTASI MAHASISWA ===");
         for (int i = 0; i < menu.length; i++) {
             System.out.println((i + 1) + ". " + menu[i]);
         }
@@ -59,7 +59,7 @@ public class TugasReferensi {
             }
         }
 
-        System.out.println("Data Berhasil Di Tambahkan");
+        System.out.println("Data Berhasil Di Tambahkan\n\n");
     }
 
     // Metode untuk menampilkan semua data mahasiswa
