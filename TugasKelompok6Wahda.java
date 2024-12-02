@@ -2,6 +2,14 @@ import java.util.Scanner;
 
 public class TugasKelompok6Wahda {
 
+    static int tampilMenu(String[] menu, int pilihan) {
+        System.out.println("\nMenu:");
+        for (int i = 0; i < menu.length; i++) {
+            System.out.println((i + 1) + ". " + menu[i]);
+        }
+        return pilihan;
+    }
+
     // Metode untuk memasukkan nilai mahasiswa
     static void inputNilai(String[][] dataMahasiswa, int jumlahMahasiswa, Scanner sc) {
         int panjangMahasiswa = 0;
@@ -51,6 +59,8 @@ public class TugasKelompok6Wahda {
                 System.out.println("Harap masukkan angka tahun yang valid.");
             }
         }
+
+        System.out.println("Data Berhasil Di Tambahkan");
     }
 
     public static void main(String[] args) {
@@ -67,10 +77,7 @@ public class TugasKelompok6Wahda {
         boolean isRunning = true;
 
         while (isRunning) {
-            System.out.println("\nMenu:");
-            for (int i = 0; i < menu.length; i++) {
-                System.out.println((i + 1) + ". " + menu[i]);
-            }
+            tampilMenu()
             System.out.print("Pilih menu: ");
             int pilihan = sc.nextInt();
             sc.nextLine(); // Bersihkan buffer
