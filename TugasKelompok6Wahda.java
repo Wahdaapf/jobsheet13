@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class TugasKelompok6Wahda {
-
+    static Scanner sc = new Scanner(System.in);
     static int tampilMenu(String[] menu, int pilihan) {
         System.out.println("\nMenu:");
         for (int i = 0; i < menu.length; i++) {
@@ -11,7 +11,7 @@ public class TugasKelompok6Wahda {
     }
 
     // Metode untuk memasukkan nilai mahasiswa
-    static void inputNilai(String[][] dataMahasiswa, int jumlahMahasiswa, Scanner sc) {
+    static void inputNilai(String[][] dataMahasiswa, int jumlahMahasiswa) {
         int panjangMahasiswa = 0;
         for (int i = 0; i < dataMahasiswa.length; i++) {
             if (dataMahasiswa[i][0] != null) { 
@@ -74,7 +74,7 @@ public class TugasKelompok6Wahda {
     }
 
     // Metode untuk menganalisis prestasi berdasarkan jenis
-    static void analisisPrestasi(String[][] dataMahasiswa, int jumlahMahasiswa, Scanner sc) {
+    static void analisisPrestasi(String[][] dataMahasiswa, int jumlahMahasiswa) {
         System.out.print("\nMasukkan jenis prestasi yang ingin dianalisis: ");
         String jenisPrestasi = sc.nextLine();
         System.out.println("\nPrestasi yang sesuai:");
@@ -90,10 +90,10 @@ public class TugasKelompok6Wahda {
                 }
             }
         }
-
         if (!ditemukan) {
             System.out.println("Tidak ada prestasi dengan jenis tersebut.");
         }
+
     }
 
     public static void main(String[] args) {
@@ -117,13 +117,13 @@ public class TugasKelompok6Wahda {
 
             switch (pilihan) {
                 case 1:
-                    inputNilai(dataMahasiswa, jumlahMahasiswa, sc);
+                    inputNilai(dataMahasiswa, jumlahMahasiswa);
                     break;
                 case 2:
                     tampilkanSemuaPrestasi(dataMahasiswa, jumlahMahasiswa);
                     break;
                 case 3:
-                    analisisPrestasi(dataMahasiswa, jumlahMahasiswa, sc);
+                    analisisPrestasi(dataMahasiswa, jumlahMahasiswa);
                     break;
                 case 4:
                     System.out.println("Terima kasih! Program selesai.");
