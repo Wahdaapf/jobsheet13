@@ -77,9 +77,9 @@ public class TugasKelompok6Wahda {
         boolean isRunning = true;
 
         while (isRunning) {
-            tampilMenu()
             System.out.print("Pilih menu: ");
             int pilihan = sc.nextInt();
+            pilihan = tampilMenu(menu, pilihan);
             sc.nextLine(); // Bersihkan buffer
 
             switch (pilihan) {

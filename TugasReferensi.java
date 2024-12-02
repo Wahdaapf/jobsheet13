@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class TugasKelompok6 {
+public class TugasReferensi {
 
     // Metode untuk memasukkan nilai mahasiswa
     static void inputNilai(String[][] dataMahasiswa, int jumlahMahasiswa, Scanner sc) {
