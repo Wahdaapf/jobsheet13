@@ -63,6 +63,39 @@ public class TugasKelompok6Wahda {
         System.out.println("Data Berhasil Di Tambahkan");
     }
 
+    // Metode untuk menampilkan semua data mahasiswa
+    static void tampilkanSemuaPrestasi(String[][] dataMahasiswa, int jumlahMahasiswa) {
+        System.out.println("\nDaftar Semua Prestasi Mahasiswa:");
+        for (int i = 0; i < jumlahMahasiswa; i++) {
+            System.out.printf("Nama: %s, NIM: %s, Jenis Prestasi: %s, Tingkat: %s, Tahun: %s\n",
+                dataMahasiswa[i][0], dataMahasiswa[i][1], dataMahasiswa[i][2], 
+                dataMahasiswa[i][3], dataMahasiswa[i][4]);
+        }
+    }
+
+    // Metode untuk menganalisis prestasi berdasarkan jenis
+    static void analisisPrestasi(String[][] dataMahasiswa, int jumlahMahasiswa, Scanner sc) {
+        System.out.print("\nMasukkan jenis prestasi yang ingin dianalisis: ");
+        String jenisPrestasi = sc.nextLine();
+        System.out.println("\nPrestasi yang sesuai:");
+        boolean ditemukan = false;
+
+        for (int i = 0; i < jumlahMahasiswa; i++) {
+            if(dataMahasiswa[i][0] != null) {
+                if (dataMahasiswa[i][2].equalsIgnoreCase(jenisPrestasi)) {
+                    System.out.printf("Nama: %s, NIM: %s, Tingkat: %s, Tahun: %s\n",
+                        dataMahasiswa[i][0], dataMahasiswa[i][1], 
+                        dataMahasiswa[i][3], dataMahasiswa[i][4]);
+                    ditemukan = true;
+                }
+            }
+        }
+
+        if (!ditemukan) {
+            System.out.println("Tidak ada prestasi dengan jenis tersebut.");
+        }
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String[] menu = {
@@ -87,10 +120,10 @@ public class TugasKelompok6Wahda {
                     inputNilai(dataMahasiswa, jumlahMahasiswa, sc);
                     break;
                 case 2:
-                    // tampilkanSemuaPrestasi(dataMahasiswa, jumlahMahasiswa);
+                    tampilkanSemuaPrestasi(dataMahasiswa, jumlahMahasiswa);
                     break;
                 case 3:
-                    // analisisPrestasi(dataMahasiswa, jumlahMahasiswa, sc);
+                    analisisPrestasi(dataMahasiswa, jumlahMahasiswa, sc);
                     break;
                 case 4:
                     System.out.println("Terima kasih! Program selesai.");
