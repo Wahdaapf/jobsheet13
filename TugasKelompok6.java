@@ -47,13 +47,17 @@ public class TugasKelompok6 { // Deklarasi kelas utama
         while (true) { // Looping untuk validasi tahun prestasi
             System.out.print("Tahun Prestasi (2010 - 2024): "); // Meminta input tahun prestasi
             String tahun = sc.nextLine(); // Membaca input pengguna
-            int tahunInt = Integer.parseInt(tahun); // Mengonversi input string menjadi integer
-            int tahunSaatIni = 2024; // Mendefinisikan tahun saat ini
-            if (tahunInt >= 2010 && tahunInt <= tahunSaatIni) { // Memeriksa apakah tahun valid
-                dataMahasiswa[panjangMahasiswa][4] = tahun; // Menyimpan tahun prestasi jika valid
-                break; // Keluar dari loop jika input valid
-            } else {
-                System.out.println("Tahun tidak valid. Coba lagi."); // Pesan jika input tidak valid
+            try {
+                int tahunInt = Integer.parseInt(tahun); // Mengonversi input string menjadi integer
+                int tahunSaatIni = 2024; // Mendefinisikan tahun saat ini
+                if (tahunInt >= 2010 && tahunInt <= tahunSaatIni) { // Memeriksa apakah tahun valid
+                    dataMahasiswa[panjangMahasiswa][4] = tahun; // Menyimpan tahun prestasi jika valid
+                    break; // Keluar dari loop jika input valid
+                } else {
+                    System.out.println("Tahun tidak valid. Coba lagi."); // Pesan jika input tidak valid
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Harap masukkan angka tahun yang valid.");
             }
         }
 
